@@ -1,0 +1,36 @@
+{
+  "summary": "Validate token lifecycle: introspect, refresh, revoke",
+  "scenarios": [
+    {
+      "name": "Introspect Access Token",
+      "type": "positive",
+      "priority": "Medium",
+      "steps": [
+        "Call /token/introspect with a valid access token"
+      ],
+      "expected_result": "Returns 200 with token metadata",
+      "endpoint": "POST /token/introspect",
+      "source_reference": "UseCase1_SpecPortal.json"
+    },
+    {
+      "name": "Refresh and Revoke Token",
+      "type": "positive",
+      "priority": "Medium",
+      "steps": [
+        "Call /token/refresh with a valid refresh token",
+        "Call /token/revoke with the same refresh token"
+      ],
+      "expected_result": "Refresh returns 200 with new access token; revoke returns 200 and invalidates the refresh token",
+      "endpoint": "POST /token/refresh",
+      "source_reference": "UseCase1_SpecPortal.json"
+    }
+  ],
+  "llm_raw_response": "{\"summary\":\"Validate token lifecycle: introspect, refresh, revoke\",\"scenarios\":[{\"name\":\"Introspect Access Token\",\"type\":\"positive\",\"priority\":\"Medium\",\"steps\":[\"Call /token/introspect with a valid access token\"],\"expected_result\":\"Returns 200 with token metadata\",\"endpoint\":\"POST /token/introspect\",\"source_reference\":\"UseCase1_SpecPortal.json\"},{\"name\":\"Refresh and Revoke Token\",\"type\":\"positive\",\"priority\":\"Medium\",\"steps\":[\"Call /token/refresh with a valid refresh token\",\"Call /token/revoke with the same refresh token\"],\"expected_result\":\"Refresh returns 200 with new access token; revoke returns 200 and invalidates the refresh token\",\"endpoint\":\"POST /token/refresh\",\"source_reference\":\"UseCase1_SpecPortal.json\"}]}",
+  "generation_mode": "OpenRouter LLM API (openrouter/free)",
+  "model": "openrouter/free",
+  "llm_usage": {
+    "prompt_tokens": 1795,
+    "completion_tokens": 163,
+    "total_tokens": 1958
+  }
+}
