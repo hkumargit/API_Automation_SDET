@@ -1,0 +1,173 @@
+{
+  "use_case": "UseCase1",
+  "files": [
+    "Use Case1_Validate Token Access and Refresh Token Lifecycle.docx",
+    "Use Case1_Validate Token Access and Refresh Token Lifecycle.postman_collection.json",
+    "UseCase1_JIRA Story_CD-425.doc",
+    "UseCase1_SpecPortal.json"
+  ],
+  "requirements": [
+    {
+      "file": "Use Case1_Validate Token Access and Refresh Token Lifecycle.docx",
+      "text": "Use Case1: Validate Token Access/Refresh Token Lifecycle (Introspect, Refresh, Revoke)\nSpec portal: BoostAPI Portal\nUser Story\nAs a QA Engineer, I want to validate the complete token lifecycle functionality so that access tokens and refresh tokens can be securely generated, introspected, refreshed, and revoked based on the authentication flow.\nUse Case Name\nValidate Access Token and Refresh Token Lifecycle\nObjective\nVerify that:\nAccess Token is generated successfully after OTP validation.\nRefresh Token is generated successfully after OTP validation.\nAccess Token can be introspected using /token/introspect.\nRefresh Token can generate a new Access Token using /token/refresh.\nRefresh Token can be revoked using /token/revoke.\nRevoked Refresh Token can no longer be used.\nPreconditions\n1. Create Profile\nCreate a new profile with either of the following roles:\nVIEW-ONLY\nADMIN\nCapture the profileId from the response.\nExample:\nJSON\n{\n\"profileId\": \"f7464fd9-4c75-425e-bdcf-0af23c3914f0\"\n}\n2. Generate OTP\nInvoke Generate OTP API:\nJSON\n{\n\"email\": \"john.doe@example.com\",\n\"profileId\": \"f7464fd9-4c75-425e-bdcf-0af23c3914f0\",\n\"accountNumber\": \"554632004483\"\n}\nCapture the deviceId from the response.\nExample:\nJSON\n{\n\"deviceId\": \"123e4567-e89b-12d3-a456-426614174000\"\n}\n3. Validate OTP\nInvoke Validate OTP API:\nJSON\n{\n\"otp\": \"000000\",\n\"deviceId\": \"123e4567-e89b-12d3-a456-426614174000\",\n\"profileId\": \"f7464fd9-4c75-425e-bdcf-0af23c3914f0\",\n\"accountNumber\": \"554632004483\"\n}\nCapture:\nJSON\n{\n\"accessToken\": \"<ACCESS_TOKEN>\",\n\"refreshToken\": \"<REFRESH_TOKEN>\"\n}"
+    },
+    {
+      "file": "UseCase1_JIRA Story_CD-425.doc",
+      "text": "Legacy .doc file detected but text extraction is unavailable on this machine. Convert it to .docx or .txt for LLM context."
+    }
+  ],
+  "specs": [
+    {
+      "file": "UseCase1_SpecPortal.json",
+      "title": "Customer Identity Service API",
+      "version": "1.0.9",
+      "endpoints": [
+        {
+          "method": "POST",
+          "path": "/generateOTP",
+          "summary": "Generate an OTP",
+          "operationId": "generateOTP",
+          "parameters": [],
+          "has_request_body": true,
+          "responses": [
+            "200",
+            "400",
+            "423",
+            "429",
+            "500"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/validateOTP",
+          "summary": "Validate an OTP and return the customer's profiles (plus access/refresh tokens when a profile is specified)",
+          "operationId": "validateOTP",
+          "parameters": [],
+          "has_request_body": true,
+          "responses": [
+            "200",
+            "400",
+            "401",
+            "403",
+            "423",
+            "500"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/authenticate",
+          "summary": "Authenticate a customer and return their profiles",
+          "operationId": "authenticate",
+          "parameters": [],
+          "has_request_body": true,
+          "responses": [
+            "200",
+            "400",
+            "401",
+            "403",
+            "423",
+            "500"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/token/revoke",
+          "summary": "Revoke a refresh token",
+          "operationId": "revoke",
+          "parameters": [],
+          "has_request_body": true,
+          "responses": [
+            "200",
+            "400",
+            "500"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/token/refresh",
+          "summary": "Generate a new access token from a refresh token",
+          "operationId": "refresh",
+          "parameters": [],
+          "has_request_body": true,
+          "responses": [
+            "200",
+            "400",
+            "401",
+            "500"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/changePassword",
+          "summary": "Change a customer's password",
+          "operationId": "changePassword",
+          "parameters": [],
+          "has_request_body": true,
+          "responses": [
+            "202",
+            "400",
+            "500"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/token/introspect",
+          "summary": "Introspect an access token",
+          "operationId": "introspect",
+          "parameters": [],
+          "has_request_body": true,
+          "responses": [
+            "200",
+            "400",
+            "500"
+          ]
+        }
+      ]
+    }
+  ],
+  "collections": [
+    {
+      "file": "Use Case1_Validate Token Access and Refresh Token Lifecycle.postman_collection.json",
+      "name": "Use Case1_Validate Token Access and Refresh Token Lifecycle",
+      "requests": [
+        {
+          "name": "CreateNewProfile",
+          "method": "POST",
+          "url": "https://person-profile-service.apiproc-test.aws.dishcloud.io/profile",
+          "description": "Generated from cURL: curl --location 'https://test.api.dishcloud.io/wireless/retail/v1/customer-management-service/customer/84234893044730' \\\n--header 'X-Correlation-Id: 0ef6bf17-c12a-4980-a885-c3914487a02d' \\\n--header 'X-TimeStamp: 2025-07-14T07:43:58.388Z' \\\n--header 'X-Client-Id: postman' \\\n--header 'X-Message-Id: 1000' \\\n--header 'Content-Type: application/json' \\\n--header 'X-ForwardedBy: forward' \\\n--header 'Authorization: Bearer dG0aBPGdRn1XUUT1e1Edb31uIX7e'"
+        },
+        {
+          "name": "MFAGenerateOTP",
+          "method": "POST",
+          "url": "https://customer-identity-service.apiproc-test.aws.dishcloud.io/generateOTP",
+          "description": "Generated from cURL: curl --location --request PUT 'https://test.api.dishcloud.io/wireless/retail/v1/customer-management-service/customer/92333448796870/address' \\\n--header 'X-Correlation-Id: 5d4cbc6d-dac3-4b92-8530-c9fdc743d028' \\\n--header 'X-TimeStamp: 2025-08-12T11:37:52.319Z' \\\n--header 'X-Client-Id: postman' \\\n--header 'X-Message-Id: 1000' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Bearer KoyRoX5xbBUf2OAFU8YYKSda749W' \\\n--data '{\n    \"contactMedium\": [\n        {\n            \"id\": \"51c0c8b0-bb67-4c18-b38b-e4ca4ac6d3bc\",\n            \"mediumType\": \"address\",\n            \"preferred\": null,\n            \"activeFlag\": \"Y\",\n            \"mediumCharacteristic\": {\n                \"city\": \"Englewood\",\n                \"country\": null,\n                \"postCode\": \"80112\",\n                \"roles\": [\n                    {\n                        \"activeFlag\": \"N\",\n                        \"addressRole\": \"BILLING\"\n                    },\n                    {\n                        \"activeFlag\": \"Y\",\n                        \"addressRole\": \"SHIPPING\"\n                    }\n                ],\n                \"stateOrProvince\": \"CO\",\n                \"street1\": \"9601 S Meridian Blvd\",\n                \"street2\": null\n            }\n        }\n    ]\n}'"
+        },
+        {
+          "name": "RevokeToken",
+          "method": "POST",
+          "url": "https://customer-identity-service.apiproc-test.aws.dishcloud.io/token/revoke",
+          "description": "Generated from cURL: curl --location --request PUT 'https://test.api.dishcloud.io/wireless/retail/v1/customer-management-service/customer/92333448796870/address' \\\n--header 'X-Correlation-Id: 5d4cbc6d-dac3-4b92-8530-c9fdc743d028' \\\n--header 'X-TimeStamp: 2025-08-12T11:37:52.319Z' \\\n--header 'X-Client-Id: postman' \\\n--header 'X-Message-Id: 1000' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Bearer KoyRoX5xbBUf2OAFU8YYKSda749W' \\\n--data '{\n    \"contactMedium\": [\n        {\n            \"id\": \"51c0c8b0-bb67-4c18-b38b-e4ca4ac6d3bc\",\n            \"mediumType\": \"address\",\n            \"preferred\": null,\n            \"activeFlag\": \"Y\",\n            \"mediumCharacteristic\": {\n                \"city\": \"Englewood\",\n                \"country\": null,\n                \"postCode\": \"80112\",\n                \"roles\": [\n                    {\n                        \"activeFlag\": \"N\",\n                        \"addressRole\": \"BILLING\"\n                    },\n                    {\n                        \"activeFlag\": \"Y\",\n                        \"addressRole\": \"SHIPPING\"\n                    }\n                ],\n                \"stateOrProvince\": \"CO\",\n                \"street1\": \"9601 S Meridian Blvd\",\n                \"street2\": null\n            }\n        }\n    ]\n}'"
+        },
+        {
+          "name": "RefreshToken",
+          "method": "POST",
+          "url": "https://customer-identity-service.apiproc-test.aws.dishcloud.io/token/refresh",
+          "description": "Generated from cURL: curl --location --request PUT 'https://test.api.dishcloud.io/wireless/retail/v1/customer-management-service/customer/92333448796870/address' \\\n--header 'X-Correlation-Id: 5d4cbc6d-dac3-4b92-8530-c9fdc743d028' \\\n--header 'X-TimeStamp: 2025-08-12T11:37:52.319Z' \\\n--header 'X-Client-Id: postman' \\\n--header 'X-Message-Id: 1000' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Bearer KoyRoX5xbBUf2OAFU8YYKSda749W' \\\n--data '{\n    \"contactMedium\": [\n        {\n            \"id\": \"51c0c8b0-bb67-4c18-b38b-e4ca4ac6d3bc\",\n            \"mediumType\": \"address\",\n            \"preferred\": null,\n            \"activeFlag\": \"Y\",\n            \"mediumCharacteristic\": {\n                \"city\": \"Englewood\",\n                \"country\": null,\n                \"postCode\": \"80112\",\n                \"roles\": [\n                    {\n                        \"activeFlag\": \"N\",\n                        \"addressRole\": \"BILLING\"\n                    },\n                    {\n                        \"activeFlag\": \"Y\",\n                        \"addressRole\": \"SHIPPING\"\n                    }\n                ],\n                \"stateOrProvince\": \"CO\",\n                \"street1\": \"9601 S Meridian Blvd\",\n                \"street2\": null\n            }\n        }\n    ]\n}'"
+        },
+        {
+          "name": "IntrospectToken",
+          "method": "POST",
+          "url": "https://customer-identity-service.apiproc-test.aws.dishcloud.io/token/introspect",
+          "description": "Generated from cURL: curl --location --request PUT 'https://test.api.dishcloud.io/wireless/retail/v1/customer-management-service/customer/92333448796870/address' \\\n--header 'X-Correlation-Id: 5d4cbc6d-dac3-4b92-8530-c9fdc743d028' \\\n--header 'X-TimeStamp: 2025-08-12T11:37:52.319Z' \\\n--header 'X-Client-Id: postman' \\\n--header 'X-Message-Id: 1000' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Bearer KoyRoX5xbBUf2OAFU8YYKSda749W' \\\n--data '{\n    \"contactMedium\": [\n        {\n            \"id\": \"51c0c8b0-bb67-4c18-b38b-e4ca4ac6d3bc\",\n            \"mediumType\": \"address\",\n            \"preferred\": null,\n            \"activeFlag\": \"Y\",\n            \"mediumCharacteristic\": {\n                \"city\": \"Englewood\",\n                \"country\": null,\n                \"postCode\": \"80112\",\n                \"roles\": [\n                    {\n                        \"activeFlag\": \"N\",\n                        \"addressRole\": \"BILLING\"\n                    },\n                    {\n                        \"activeFlag\": \"Y\",\n                        \"addressRole\": \"SHIPPING\"\n                    }\n                ],\n                \"stateOrProvince\": \"CO\",\n                \"street1\": \"9601 S Meridian Blvd\",\n                \"street2\": null\n            }\n        }\n    ]\n}'"
+        },
+        {
+          "name": "MFAValidateOTP",
+          "method": "POST",
+          "url": "https://customer-identity-service.apiproc-test.aws.dishcloud.io/validateOTP",
+          "description": "Generated from cURL: curl --location --request PUT 'https://test.api.dishcloud.io/wireless/retail/v1/customer-management-service/customer/92333448796870/address' \\\n--header 'X-Correlation-Id: 5d4cbc6d-dac3-4b92-8530-c9fdc743d028' \\\n--header 'X-TimeStamp: 2025-08-12T11:37:52.319Z' \\\n--header 'X-Client-Id: postman' \\\n--header 'X-Message-Id: 1000' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Bearer KoyRoX5xbBUf2OAFU8YYKSda749W' \\\n--data '{\n    \"contactMedium\": [\n        {\n            \"id\": \"51c0c8b0-bb67-4c18-b38b-e4ca4ac6d3bc\",\n            \"mediumType\": \"address\",\n            \"preferred\": null,\n            \"activeFlag\": \"Y\",\n            \"mediumCharacteristic\": {\n                \"city\": \"Englewood\",\n                \"country\": null,\n                \"postCode\": \"80112\",\n                \"roles\": [\n                    {\n                        \"activeFlag\": \"N\",\n                        \"addressRole\": \"BILLING\"\n                    },\n                    {\n                        \"activeFlag\": \"Y\",\n                        \"addressRole\": \"SHIPPING\"\n                    }\n                ],\n                \"stateOrProvince\": \"CO\",\n                \"street1\": \"9601 S Meridian Blvd\",\n                \"street2\": null\n            }\n        }\n    ]\n}'"
+        }
+      ]
+    }
+  ],
+  "other_documents": []
+}
