@@ -1,0 +1,19 @@
+[
+  {
+    "scenario_id": "UseCase2-TC-001",
+    "scenario": "Product Information API Validation",
+    "type": "positive",
+    "priority": "Medium",
+    "requirement_sources": [
+      "Use Case 2 Product Information API.docx",
+      "UseCase2_JIRA Story_POI-3380.doc"
+    ],
+    "api_spec_sources": [
+      "UseCase2_SpecPortal.json"
+    ],
+    "postman_sources": [
+      "Use Case 2 Product Information API.postman_collection.json"
+    ],
+    "practitest_demo_status": "New / Review Required"
+  }
+]
