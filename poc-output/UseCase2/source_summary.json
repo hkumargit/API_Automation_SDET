@@ -1,0 +1,407 @@
+{
+  "use_case": "UseCase2",
+  "files": [
+    "Use Case 2 Product Information API.docx",
+    "Use Case 2 Product Information API.postman_collection.json",
+    "UseCase2_JIRA Story_POI-3380.doc",
+    "UseCase2_SpecPortal.json"
+  ],
+  "requirements": [
+    {
+      "file": "Use Case 2 Product Information API.docx",
+      "text": "Use Case 2: Product Information API\nSpec Portal: BoostAPI Portal\nObjective: Automate validation of the Product Information API by dynamically retrieving applicable businessId values and validating the required product attributes for each business.\n\nProduct Information Endpoint: GET /product/productInformation\n\nPreconditions / Test Data\nInvoke the Product Offering endpoint: GET /productOffering?salesChannel=default&brand=test\n\nFrom the response, identify the businessId values where productTypesClassification contains an entry with: name = \"Mobile Device\"\nStore the applicable businessId values for subsequent API validation.\nFrom the Product Offering response, capture the required product attributes, including:\nproducts.name\nproducts.guid\nAttributes under charges array\nproducts.minOccurs\n\nValidation Steps\nIterate through each identified businessId.\nInvoke the Product Information API using the corresponding businessId.\nValidate that the API returns HTTP 200.\nFor a successful response, perform soft assertions to verify that all required attributes are present and populated as expected.\nIf any required attribute is missing, capture and report:\nbusinessId\nMissing attribute(s)\nContinue validation for the remaining businessId values even if one business fails validation.\n\nFailure Criteria\nIf the Product Information API returns a 4xx/5xx response, mark the corresponding test case as failed.\n\nIf the API returns 200 but one or more required attributes are missing, report the missing attributes and mark the validation as failed after completing the remaining applicable businessId validations.\n\nThe final automation report should clearly identify all failed businessId values and the corresponding validation failures.\n\nExpected Outcome\nThe automation should provide complete coverage of all applicable Mobile Device businessId values and clearly report API failures or missing product attributes without stopping execution at the first failure."
+    },
+    {
+      "file": "UseCase2_JIRA Story_POI-3380.doc",
+      "text": "Legacy .doc file detected but text extraction is unavailable on this machine. Convert it to .docx or .txt for LLM context."
+    }
+  ],
+  "specs": [
+    {
+      "file": "UseCase2_SpecPortal.json",
+      "title": "Product Catalog Management Service",
+      "version": "0.0.153",
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/",
+          "summary": "Health check endpoint",
+          "operationId": "",
+          "parameters": [],
+          "has_request_body": false,
+          "responses": [
+            "200"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/productOffering",
+          "summary": "Retrieves Catalog Entities",
+          "operationId": "",
+          "parameters": [
+            "salesChannel",
+            "brand",
+            "sendRateCard",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "has_request_body": false,
+          "responses": [
+            "200"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/product/lookup/sim",
+          "summary": "Get SimSku",
+          "operationId": "",
+          "parameters": [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "has_request_body": true,
+          "responses": [
+            "200"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/v2/product/clearCache",
+          "summary": "Clear Cache",
+          "operationId": "",
+          "parameters": [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "has_request_body": true,
+          "responses": [
+            "200"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/v2/product/purgeCache",
+          "summary": "Purge Cache",
+          "operationId": "",
+          "parameters": [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "has_request_body": false,
+          "responses": [
+            "200"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/product/productPricing",
+          "summary": "Retrieves Catalog Entities by businessId",
+          "operationId": "",
+          "parameters": [
+            "businessId",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "has_request_body": false,
+          "responses": [
+            "200"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/product/productGrouping",
+          "summary": "Get product grouping",
+          "operationId": "",
+          "parameters": [
+            "catalogId",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "has_request_body": false,
+          "responses": [
+            "200"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/product/skuToBusinessId",
+          "summary": "Get Business ID from SKU",
+          "operationId": "",
+          "parameters": [
+            "sku",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "has_request_body": false,
+          "responses": [
+            "200"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/product/simSkuAssociation",
+          "summary": "Get SimSku data",
+          "operationId": "",
+          "parameters": [
+            "marketingBrand",
+            "network",
+            "byod",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "has_request_body": false,
+          "responses": [
+            "200"
+          ]
+        },
+        {
+          "method": "PUT",
+          "path": "/product/simSkuAssociation",
+          "summary": "Update SimSku data",
+          "operationId": "",
+          "parameters": [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "has_request_body": true,
+          "responses": [
+            "200"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/product/simSkuAssociation",
+          "summary": "Create SimSku data",
+          "operationId": "",
+          "parameters": [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "has_request_body": true,
+          "responses": [
+            "200"
+          ]
+        },
+        {
+          "method": "DELETE",
+          "path": "/product/simSkuAssociation",
+          "summary": "Delete SimSku data",
+          "operationId": "",
+          "parameters": [
+            "marketingBrand",
+            "network",
+            "byod",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "has_request_body": false,
+          "responses": [
+            "200"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/v2/product/productPricing",
+          "summary": "Retrieves Catalog Entities by businessId (V2)",
+          "operationId": "",
+          "parameters": [
+            "businessId",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "has_request_body": false,
+          "responses": [
+            "200"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/product/compatibleNetworks",
+          "summary": "Retrieves Compatible Networks for a businessId",
+          "operationId": "",
+          "parameters": [
+            "businessId",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "has_request_body": false,
+          "responses": [
+            "200"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/product/planEligibilityMap",
+          "summary": "Plan Eligibility Map",
+          "operationId": "",
+          "parameters": [
+            "planSubset",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "has_request_body": false,
+          "responses": [
+            "200"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/product/productInformation",
+          "summary": "Get product Info",
+          "operationId": "",
+          "parameters": [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "has_request_body": true,
+          "responses": [
+            "200"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/v2/product/productOffering",
+          "summary": "Retrieves Catalog Entities (V2)",
+          "operationId": "",
+          "parameters": [
+            "salesChannel",
+            "brand",
+            "sendRateCard",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "has_request_body": false,
+          "responses": [
+            "200"
+          ]
+        },
+        {
+          "method": "GET",
+          "path": "/product/appleSkuAssociation",
+          "summary": "Get DISH SKU from Apple SKU",
+          "operationId": "",
+          "parameters": [
+            "businessId",
+            "appleSku",
+            "dishSku",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "has_request_body": false,
+          "responses": [
+            "200"
+          ]
+        },
+        {
+          "method": "PUT",
+          "path": "/product/appleSkuAssociation",
+          "summary": "Get DISH SKU from Apple SKU (Update Cache)",
+          "operationId": "",
+          "parameters": [
+            "businessId",
+            "appleSku",
+            "dishSku",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "has_request_body": false,
+          "responses": [
+            "200"
+          ]
+        },
+        {
+          "method": "POST",
+          "path": "/product/simSkuAssociation/refreshCache",
+          "summary": "Refresh SimSku data cache",
+          "operationId": "",
+          "parameters": [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "has_request_body": true,
+          "responses": [
+            "200"
+          ]
+        }
+      ]
+    }
+  ],
+  "collections": [
+    {
+      "file": "Use Case 2 Product Information API.postman_collection.json",
+      "name": "Catalog Service",
+      "requests": [
+        {
+          "name": "Product Offering",
+          "method": "GET",
+          "url": "https://product-catalog-management-service.apiproc-int.aws.dishcloud.io/productOffering?salesChannel=default&brand=test",
+          "description": "Generated from cURL: curl --location 'https://product-catalog-management-service.apiproc-test.aws.dishcloud.io/productOffering?salesChannel=default&brand=test' \\\n--header 'X-Correlation-Id: d94d00e3-5722-4bb2-a919-fc652fb3e96e' \\\n--header 'X-Message-Id: 1001' \\\n--header 'X-Client-Id: Magento' \\\n--header 'X-TimeStamp: 1749152520' \\\n--header 'X-ForwardedBy: Order-orchestration' \\\n--header 'Authorization: {{bearer_token_0f0c}}'"
+        },
+        {
+          "name": "Product Information",
+          "method": "POST",
+          "url": "https://product-catalog-management-service.apiproc-int.aws.dishcloud.io/product/productInformation",
+          "description": "Generated from cURL: curl --location 'https://product-catalog-management-service.apiproc-test.aws.dishcloud.io/product/productInformation' \\\n--header 'X-Correlation-Id: 945a76ce-d5fa-4f86-a7a0-027e7808f46f' \\\n--header 'X-Message-Id: 1001' \\\n--header 'X-Client-Id: Magento' \\\n--header 'X-TimeStamp: 2024-01-17T16:31:58.869Z' \\\n--header 'X-ForwardedBy: Order-orchestration' \\\n--header 'Content-Type: application/json' \\\n--data '{\n    \"channel\": \"e-commerce\",\n    \"businessIds\": [\n        \"001941\"\n    ]\n}'"
+        }
+      ]
+    }
+  ],
+  "other_documents": []
+}
