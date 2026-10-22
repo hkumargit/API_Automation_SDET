@@ -1,0 +1,36 @@
+[
+  {
+    "scenario_id": "UseCase1-TC-001",
+    "scenario": "Introspect Access Token",
+    "type": "positive",
+    "priority": "Medium",
+    "requirement_sources": [
+      "Use Case1_Validate Token Access and Refresh Token Lifecycle.docx",
+      "UseCase1_JIRA Story_CD-425.doc"
+    ],
+    "api_spec_sources": [
+      "UseCase1_SpecPortal.json"
+    ],
+    "postman_sources": [
+      "Use Case1_Validate Token Access and Refresh Token Lifecycle.postman_collection.json"
+    ],
+    "practitest_demo_status": "New / Review Required"
+  },
+  {
+    "scenario_id": "UseCase1-TC-002",
+    "scenario": "Refresh and Revoke Token",
+    "type": "positive",
+    "priority": "Medium",
+    "requirement_sources": [
+      "Use Case1_Validate Token Access and Refresh Token Lifecycle.docx",
+      "UseCase1_JIRA Story_CD-425.doc"
+    ],
+    "api_spec_sources": [
+      "UseCase1_SpecPortal.json"
+    ],
+    "postman_sources": [
+      "Use Case1_Validate Token Access and Refresh Token Lifecycle.postman_collection.json"
+    ],
+    "practitest_demo_status": "New / Review Required"
+  }
+]
