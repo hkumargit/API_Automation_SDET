@@ -1,0 +1,25 @@
+{
+  "summary": "Validate Product Information API returns HTTP 200 and required attributes for businessIds with Mobile Device product type",
+  "scenarios": [
+    {
+      "name": "Product Information API Validation",
+      "type": "positive",
+      "priority": "Medium",
+      "steps": [
+        "Invoke GET /productOffering?salesChannel=default&brand=test and extract businessId values where productTypesClassification name equals Mobile Device",
+        "Invoke GET /product/productInformation?businessId={businessId} for each extracted businessId and verify HTTP 200 and presence of products.name, products.guid, charges array, and pr"
+      ],
+      "expected_result": "API returns HTTP 200 and all required product attributes are present and populated for each businessId",
+      "endpoint": "GET /product/productInformation",
+      "source_reference": "Use Case 2 Product Information API.docx"
+    }
+  ],
+  "llm_raw_response": "{\"summary\":\"Validate Product Information API returns HTTP 200 and required attributes for businessIds with Mobile Device product type\",\"scenarios\":[{\"name\":\"Product Information API Validation\",\"type\":\"positive\",\"priority\":\"Medium\",\"steps\":[\"Invoke GET /productOffering?salesChannel=default&brand=test and extract businessId values where productTypesClassification name equals Mobile Device\",\"Invoke GET /product/productInformation?businessId={businessId} for each extracted businessId and verify HTTP 200 and presence of products.name, products.guid, charges array, and products.minOccurs\"],\"expected_result\":\"API returns HTTP 200 and all required product attributes are present and populated for each businessId\",\"endpoint\":\"GET /product/productInformation\",\"source_reference\":\"Use Case 2 Product Information API.docx\"}]}",
+  "generation_mode": "OpenRouter LLM API (openrouter/free)",
+  "model": "openrouter/free",
+  "llm_usage": {
+    "prompt_tokens": 1376,
+    "completion_tokens": 161,
+    "total_tokens": 1537
+  }
+}
