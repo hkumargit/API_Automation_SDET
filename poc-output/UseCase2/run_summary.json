@@ -1,0 +1,29 @@
+{
+  "use_case": "UseCase2",
+  "generated_at_utc": "2026-10-22T17:40:08.367889+00:00",
+  "input_files": [
+    "Use Case 2 Product Information API.docx",
+    "Use Case 2 Product Information API.postman_collection.json",
+    "UseCase2_JIRA Story_POI-3380.doc",
+    "UseCase2_SpecPortal.json"
+  ],
+  "requirement_files": [
+    "Use Case 2 Product Information API.docx",
+    "UseCase2_JIRA Story_POI-3380.doc"
+  ],
+  "api_spec_count": 1,
+  "endpoint_count": 20,
+  "postman_collection_count": 1,
+  "postman_request_count": 2,
+  "scenario_count": 1,
+  "generation_mode": "OpenRouter LLM API (openrouter/free)",
+  "model": "openrouter/free",
+  "llm_usage": {
+    "prompt_tokens": 1376,
+    "completion_tokens": 161,
+    "total_tokens": 1537
+  },
+  "llm_response_seconds": 25.33,
+  "note": "Generated Java is a scaffold; review and complete endpoint/auth/payload/assertions before running.",
+  "total_workflow_seconds": 25.49
+}
