@@ -1,7 +1,7 @@
 [
   {
     "scenario_id": "UseCase1-TC-001",
-    "scenario": "Introspect Access Token",
+    "scenario": "Generate and Refresh Access Token",
     "type": "positive",
     "priority": "Medium",
     "requirement_sources": [
@@ -18,8 +18,8 @@
   },
   {
     "scenario_id": "UseCase1-TC-002",
-    "scenario": "Refresh and Revoke Token",
-    "type": "positive",
+    "scenario": "Revoke Refresh Token",
+    "type": "negative",
     "priority": "Medium",
     "requirement_sources": [
       "Use Case1_Validate Token Access and Refresh Token Lifecycle.docx",
