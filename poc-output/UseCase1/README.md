@@ -6,7 +6,7 @@
 - Candidate scenarios: 2
 - Generation: OpenRouter LLM API (openrouter/free)
 - Model: openrouter/free
-- LLM response time: 87.43 seconds
+- LLM response time: 13.64 seconds
 
 ## Files
 - `source_summary.json`
