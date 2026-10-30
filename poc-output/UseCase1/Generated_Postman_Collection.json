@@ -1,18 +1,15 @@
 {
   "info": {
-    "_postman_id": "UseCase1-postman-demo",
-    "name": "UseCase1 - Postman Demo Collection",
-    "description": "Static demo collection for the QA Automation POC. This JSON is generated locally; no LLM is used to create it. Replace the sample endpoints with endpoints supported by your test API.",
+    "_postman_id": "UseCase1-scenario-collection",
+    "name": "UseCase1 - Generated Scenario Requests",
+    "description": "Deterministic Postman Collection v2.1 created locally from generated scenario endpoint fields. No LLM is used to construct this collection. Only documented scenario endpoints are included.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "auth": {
-    "type": "noauth"
   },
   "item": [
     {
-      "name": "01 - API root responds",
+      "name": "Revoked Refresh Token Cannot Be Reused",
       "request": {
-        "method": "GET",
+        "method": "POST",
         "header": [
           {
             "key": "Accept",
@@ -20,35 +17,36 @@
           }
         ],
         "url": {
-          "raw": "{{base_url}}/",
+          "raw": "{{base_url}}/token/refresh",
           "host": [
             "{{base_url}}"
           ],
           "path": [
-            ""
+            "token",
+            "refresh"
           ]
         },
-        "description": "Demo request. Change the path to a documented endpoint if needed."
+        "description": "Verify that a revoked refresh token is rejected when used to generate a new access token\nSteps: Attempt to use the revoked refresh token to call /token/refresh\nExpected: The /token/refresh endpoint returns a 400 response and does not issue a new access token\nSource: Use Case1_Validate Token Access and Refresh Token Lifecycle.docx"
       },
+      "response": [],
       "event": [
         {
           "listen": "test",
           "script": {
             "type": "text/javascript",
             "exec": [
-              "pm.test('Server returns a successful response', function () {",
-              "    pm.expect(pm.response.code).to.be.within(200, 299);",
+              "pm.test('HTTP status is 400', function () {",
+              "    pm.response.to.have.status(400);",
               "});"
             ]
           }
         }
-      ],
-      "response": []
+      ]
     },
     {
-      "name": "02 - Health endpoint responds",
+      "name": "Introspected Access Token Returns Valid Status",
       "request": {
-        "method": "GET",
+        "method": "POST",
         "header": [
           {
             "key": "Accept",
@@ -56,30 +54,31 @@
           }
         ],
         "url": {
-          "raw": "{{base_url}}/health",
+          "raw": "{{base_url}}/token/introspect",
           "host": [
             "{{base_url}}"
           ],
           "path": [
-            "health"
+            "token",
+            "introspect"
           ]
         },
-        "description": "Demo request. Use only if the target API exposes /health."
+        "description": "Verify that a valid access token returns an active/introspected status when passed to /token/introspect\nSteps: Call /token/introspect with the captured accessToken\nExpected: The /token/introspect endpoint returns a 200 response confirming the access token is valid and active\nSource: Use Case1_Validate Token Access and Refresh Token Lifecycle.docx"
       },
+      "response": [],
       "event": [
         {
           "listen": "test",
           "script": {
             "type": "text/javascript",
             "exec": [
-              "pm.test('Health endpoint returns HTTP 200', function () {",
+              "pm.test('HTTP status is 200', function () {",
               "    pm.response.to.have.status(200);",
               "});"
             ]
           }
         }
-      ],
-      "response": []
+      ]
     }
   ],
   "variable": [
