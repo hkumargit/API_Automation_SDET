@@ -1,9 +1,22 @@
 [
   {
     "scenario_id": "UseCase1-TC-001",
-    "scenario": "Generate and Refresh Access Token",
-    "type": "positive",
-    "priority": "Medium",
+    "scenario": "Revoked Refresh Token Cannot Be Reused",
+    "name": "Revoked Refresh Token Cannot Be Reused",
+    "type": "negative",
+    "priority": "High",
+    "objective": "Verify that a revoked refresh token is rejected when used to generate a new access token",
+    "preconditions": [
+      "Create a profile and capture profileId",
+      "Generate OTP and capture deviceId",
+      "Validate OTP and capture accessToken and refreshToken"
+    ],
+    "steps": [
+      "Attempt to use the revoked refresh token to call /token/refresh"
+    ],
+    "expected_result": "The /token/refresh endpoint returns a 400 response and does not issue a new access token",
+    "endpoint": "POST /token/refresh",
+    "source_reference": "Use Case1_Validate Token Access and Refresh Token Lifecycle.docx",
     "requirement_sources": [
       "Use Case1_Validate Token Access and Refresh Token Lifecycle.docx",
       "UseCase1_JIRA Story_CD-425.doc"
@@ -14,13 +27,39 @@
     "postman_sources": [
       "Use Case1_Validate Token Access and Refresh Token Lifecycle.postman_collection.json"
     ],
-    "practitest_demo_status": "New / Review Required"
+    "practitest_demo_status": "New / Review Required",
+    "execution_result": "PASS",
+    "execution_mode": "LOCAL_PREVIEW",
+    "response_code": 400,
+    "response_body": {
+      "execution_mode": "LOCAL_PREVIEW",
+      "message": "API response preview prepared successfully",
+      "scenario": "Revoked Refresh Token Cannot Be Reused",
+      "method": "POST",
+      "endpoint": "{{base_url}}/token/refresh",
+      "result": "PASS"
+    },
+    "execution_message": "Request definition is valid; local response preview prepared. Live API call is not enabled.",
+    "executed_at": "2026-10-30T10:51:28.164703+00:00"
   },
   {
     "scenario_id": "UseCase1-TC-002",
-    "scenario": "Revoke Refresh Token",
-    "type": "negative",
+    "scenario": "Introspected Access Token Returns Valid Status",
+    "name": "Introspected Access Token Returns Valid Status",
+    "type": "positive",
     "priority": "Medium",
+    "objective": "Verify that a valid access token returns an active/introspected status when passed to /token/introspect",
+    "preconditions": [
+      "Create a profile and capture profileId",
+      "Generate OTP and capture deviceId",
+      "Validate OTP and capture accessToken"
+    ],
+    "steps": [
+      "Call /token/introspect with the captured accessToken"
+    ],
+    "expected_result": "The /token/introspect endpoint returns a 200 response confirming the access token is valid and active",
+    "endpoint": "POST /token/introspect",
+    "source_reference": "Use Case1_Validate Token Access and Refresh Token Lifecycle.docx",
     "requirement_sources": [
       "Use Case1_Validate Token Access and Refresh Token Lifecycle.docx",
       "UseCase1_JIRA Story_CD-425.doc"
@@ -31,6 +70,19 @@
     "postman_sources": [
       "Use Case1_Validate Token Access and Refresh Token Lifecycle.postman_collection.json"
     ],
-    "practitest_demo_status": "New / Review Required"
+    "practitest_demo_status": "New / Review Required",
+    "execution_result": "PASS",
+    "execution_mode": "LOCAL_PREVIEW",
+    "response_code": 200,
+    "response_body": {
+      "execution_mode": "LOCAL_PREVIEW",
+      "message": "API response preview prepared successfully",
+      "scenario": "Introspected Access Token Returns Valid Status",
+      "method": "POST",
+      "endpoint": "{{base_url}}/token/introspect",
+      "result": "PASS"
+    },
+    "execution_message": "Request definition is valid; local response preview prepared. Live API call is not enabled.",
+    "executed_at": "2026-10-30T10:51:28.164703+00:00"
   }
 ]
