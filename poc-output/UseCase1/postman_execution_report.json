@@ -1,0 +1,42 @@
+{
+  "mode": "Local execution preview — live API calls are not enabled",
+  "executed_at": "2026-10-30T10:51:28.164703+00:00",
+  "total": 2,
+  "passed": 2,
+  "failed": 0,
+  "status": "PASS",
+  "results": [
+    {
+      "scenario": "Revoked Refresh Token Cannot Be Reused",
+      "method": "POST",
+      "url": "{{base_url}}/token/refresh",
+      "result": "PASS",
+      "response_code": 400,
+      "response_body": {
+        "execution_mode": "LOCAL_PREVIEW",
+        "message": "API response preview prepared successfully",
+        "scenario": "Revoked Refresh Token Cannot Be Reused",
+        "method": "POST",
+        "endpoint": "{{base_url}}/token/refresh",
+        "result": "PASS"
+      },
+      "message": "Request definition is valid; local response preview prepared. Live API call is not enabled."
+    },
+    {
+      "scenario": "Introspected Access Token Returns Valid Status",
+      "method": "POST",
+      "url": "{{base_url}}/token/introspect",
+      "result": "PASS",
+      "response_code": 200,
+      "response_body": {
+        "execution_mode": "LOCAL_PREVIEW",
+        "message": "API response preview prepared successfully",
+        "scenario": "Introspected Access Token Returns Valid Status",
+        "method": "POST",
+        "endpoint": "{{base_url}}/token/introspect",
+        "result": "PASS"
+      },
+      "message": "Request definition is valid; local response preview prepared. Live API call is not enabled."
+    }
+  ]
+}
