@@ -1,9 +1,21 @@
 [
   {
     "scenario_id": "UseCase2-TC-001",
-    "scenario": "Product Information API Validation",
+    "scenario": "Verify uncovered API operation: Health check endpoint",
+    "name": "Verify uncovered API operation: Health check endpoint",
     "type": "positive",
     "priority": "Medium",
+    "objective": "Exercise the documented GET / operation and verify its response contract.",
+    "preconditions": [
+      "A reachable authorized test environment is configured."
+    ],
+    "steps": [
+      "Prepare a GET request to / using the documented request details.",
+      "Send the request and compare the status and response body with the API specification."
+    ],
+    "expected_result": "The response matches the status code and schema documented for this operation; confirm exact values against the source specification.",
+    "endpoint": "GET /",
+    "source_reference": "UseCase2_SpecPortal.json",
     "requirement_sources": [
       "Use Case 2 Product Information API.docx",
       "UseCase2_JIRA Story_POI-3380.doc"
@@ -14,6 +26,87 @@
     "postman_sources": [
       "Use Case 2 Product Information API.postman_collection.json"
     ],
-    "practitest_demo_status": "New / Review Required"
+    "practitest_demo_status": "New / Review Required",
+    "use_case": "UseCase2",
+    "status": "New",
+    "reviewer": "Unassigned",
+    "created_in_run": true,
+    "source_label": "Newly added in latest run",
+    "execution_result": "PASS",
+    "execution_mode": "LOCAL_DEMO",
+    "response_code": 200,
+    "response_body": {
+      "timestamp": "2026-10-30T12:02:25.898408+00:00",
+      "status": 200,
+      "message": "Request processed successfully.",
+      "scenario": "Verify uncovered API operation: Health check endpoint",
+      "data": {
+        "authenticated": true,
+        "token_status": "active",
+        "operation": "Verify uncovered API operation: Health check endpoint"
+      },
+      "execution": "completed"
+    },
+    "response_headers": {
+      "Content-Type": "application/json"
+    },
+    "execution_message": "Scenario processed and response generated.",
+    "execution_duration_ms": 42,
+    "executed_at": "2026-10-30T12:02:25.898408+00:00"
+  },
+  {
+    "scenario_id": "UseCase2-TC-002",
+    "scenario": "Verify uncovered API operation: Retrieves Catalog Entities",
+    "name": "Verify uncovered API operation: Retrieves Catalog Entities",
+    "type": "positive",
+    "priority": "Medium",
+    "objective": "Exercise the documented GET /productOffering operation and verify its response contract.",
+    "preconditions": [
+      "A reachable authorized test environment is configured."
+    ],
+    "steps": [
+      "Prepare a GET request to /productOffering using the documented request details.",
+      "Send the request and compare the status and response body with the API specification."
+    ],
+    "expected_result": "The response matches the status code and schema documented for this operation; confirm exact values against the source specification.",
+    "endpoint": "GET /productOffering",
+    "source_reference": "UseCase2_SpecPortal.json",
+    "requirement_sources": [
+      "Use Case 2 Product Information API.docx",
+      "UseCase2_JIRA Story_POI-3380.doc"
+    ],
+    "api_spec_sources": [
+      "UseCase2_SpecPortal.json"
+    ],
+    "postman_sources": [
+      "Use Case 2 Product Information API.postman_collection.json"
+    ],
+    "practitest_demo_status": "New / Review Required",
+    "use_case": "UseCase2",
+    "status": "New",
+    "reviewer": "Unassigned",
+    "created_in_run": true,
+    "source_label": "Newly added in latest run",
+    "execution_result": "PASS",
+    "execution_mode": "LOCAL_DEMO",
+    "response_code": 200,
+    "response_body": {
+      "timestamp": "2026-10-30T12:02:25.898408+00:00",
+      "status": 200,
+      "message": "Request processed successfully.",
+      "scenario": "Verify uncovered API operation: Retrieves Catalog Entities",
+      "data": {
+        "authenticated": true,
+        "token_status": "active",
+        "operation": "Verify uncovered API operation: Retrieves Catalog Entities"
+      },
+      "execution": "completed"
+    },
+    "response_headers": {
+      "Content-Type": "application/json"
+    },
+    "execution_message": "Scenario processed and response generated.",
+    "execution_duration_ms": 49,
+    "executed_at": "2026-10-30T12:02:25.898408+00:00"
   }
 ]
