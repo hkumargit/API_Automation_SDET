@@ -1,6 +1,6 @@
 {
   "use_case": "UseCase2",
-  "generated_at_utc": "2026-10-22T17:40:08.367889+00:00",
+  "generated_at_utc": "2026-10-30T12:01:53.655073+00:00",
   "input_files": [
     "Use Case 2 Product Information API.docx",
     "Use Case 2 Product Information API.postman_collection.json",
@@ -15,15 +15,15 @@
   "endpoint_count": 20,
   "postman_collection_count": 1,
   "postman_request_count": 2,
-  "scenario_count": 1,
-  "generation_mode": "OpenRouter LLM API (openrouter/free)",
+  "scenario_count": 2,
+  "generation_mode": "Local source-grounded gap recovery (not LLM-generated)",
   "model": "openrouter/free",
   "llm_usage": {
-    "prompt_tokens": 1376,
-    "completion_tokens": 161,
-    "total_tokens": 1537
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0
   },
-  "llm_response_seconds": 25.33,
+  "llm_response_seconds": 36.75,
   "note": "Generated Java is a scaffold; review and complete endpoint/auth/payload/assertions before running.",
-  "total_workflow_seconds": 25.49
+  "total_workflow_seconds": 36.89
 }
