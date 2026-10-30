@@ -1,0 +1,61 @@
+{
+  "info": {
+    "_postman_id": "UseCase2-scenario-collection",
+    "name": "UseCase2 - Generated Scenario Requests",
+    "description": "Deterministic Postman Collection v2.1 created locally from generated scenario endpoint fields. No LLM is used to construct this collection. Only documented scenario endpoints are included.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Verify uncovered API operation: Health check endpoint",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": []
+        },
+        "description": "Exercise the documented GET / operation and verify its response contract.\nSteps: Prepare a GET request to / using the documented request details. Send the request and compare the status and response body with the API specification.\nExpected: The response matches the status code and schema documented for this operation; confirm exact values against the source specification.\nSource: UseCase2_SpecPortal.json"
+      },
+      "response": []
+    },
+    {
+      "name": "Verify uncovered API operation: Retrieves Catalog Entities",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/productOffering",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "productOffering"
+          ]
+        },
+        "description": "Exercise the documented GET /productOffering operation and verify its response contract.\nSteps: Prepare a GET request to /productOffering using the documented request details. Send the request and compare the status and response body with the API specification.\nExpected: The response matches the status code and schema documented for this operation; confirm exact values against the source specification.\nSource: UseCase2_SpecPortal.json"
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://your-test-api.example.com",
+      "type": "string"
+    }
+  ]
+}
