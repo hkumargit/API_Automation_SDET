@@ -4,9 +4,9 @@
 - OpenAPI endpoints found: 7
 - Postman requests found: 6
 - Candidate scenarios: 2
-- Generation: OpenRouter LLM API (openrouter/free)
+- Generation: Local source-grounded gap recovery (not LLM-generated)
 - Model: openrouter/free
-- LLM response time: 13.75 seconds
+- LLM response time: 26.60 seconds
 
 ## Files
 - `source_summary.json`
