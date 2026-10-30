@@ -1,0 +1,26 @@
+{
+  "mode": "SIMULATED — no real HTTP requests sent",
+  "executed_at": "2026-10-30T10:29:34.879580+00:00",
+  "total": 1,
+  "passed": 1,
+  "failed": 0,
+  "status": "PASS",
+  "results": [
+    {
+      "scenario": "Verify uncovered API operation: Introspect an access token",
+      "method": "POST",
+      "url": "{{base_url}}/token/introspect",
+      "result": "PASS",
+      "response_code": 200,
+      "response_body": {
+        "simulation": true,
+        "message": "Mock API response generated successfully",
+        "scenario": "Verify uncovered API operation: Introspect an access token",
+        "method": "POST",
+        "endpoint": "{{base_url}}/token/introspect",
+        "result": "PASS"
+      },
+      "message": "Request definition is valid; mock response returned. No live API was called."
+    }
+  ]
+}
