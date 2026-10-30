@@ -1,25 +1,49 @@
 {
-  "summary": "Validate Product Information API returns HTTP 200 and required attributes for businessIds with Mobile Device product type",
+  "summary": "Source-grounded candidates for API operations not found in existing PractiTest scenarios.",
   "scenarios": [
     {
-      "name": "Product Information API Validation",
+      "name": "Verify uncovered API operation: Health check endpoint",
       "type": "positive",
       "priority": "Medium",
-      "steps": [
-        "Invoke GET /productOffering?salesChannel=default&brand=test and extract businessId values where productTypesClassification name equals Mobile Device",
-        "Invoke GET /product/productInformation?businessId={businessId} for each extracted businessId and verify HTTP 200 and presence of products.name, products.guid, charges array, and pr"
+      "objective": "Exercise the documented GET / operation and verify its response contract.",
+      "preconditions": [
+        "A reachable authorized test environment is configured."
       ],
-      "expected_result": "API returns HTTP 200 and all required product attributes are present and populated for each businessId",
-      "endpoint": "GET /product/productInformation",
-      "source_reference": "Use Case 2 Product Information API.docx"
+      "steps": [
+        "Prepare a GET request to / using the documented request details.",
+        "Send the request and compare the status and response body with the API specification."
+      ],
+      "expected_result": "The response matches the status code and schema documented for this operation; confirm exact values against the source specification.",
+      "endpoint": "GET /",
+      "source_reference": "UseCase2_SpecPortal.json"
+    },
+    {
+      "name": "Verify uncovered API operation: Retrieves Catalog Entities",
+      "type": "positive",
+      "priority": "Medium",
+      "objective": "Exercise the documented GET /productOffering operation and verify its response contract.",
+      "preconditions": [
+        "A reachable authorized test environment is configured."
+      ],
+      "steps": [
+        "Prepare a GET request to /productOffering using the documented request details.",
+        "Send the request and compare the status and response body with the API specification."
+      ],
+      "expected_result": "The response matches the status code and schema documented for this operation; confirm exact values against the source specification.",
+      "endpoint": "GET /productOffering",
+      "source_reference": "UseCase2_SpecPortal.json"
     }
   ],
-  "llm_raw_response": "{\"summary\":\"Validate Product Information API returns HTTP 200 and required attributes for businessIds with Mobile Device product type\",\"scenarios\":[{\"name\":\"Product Information API Validation\",\"type\":\"positive\",\"priority\":\"Medium\",\"steps\":[\"Invoke GET /productOffering?salesChannel=default&brand=test and extract businessId values where productTypesClassification name equals Mobile Device\",\"Invoke GET /product/productInformation?businessId={businessId} for each extracted businessId and verify HTTP 200 and presence of products.name, products.guid, charges array, and products.minOccurs\"],\"expected_result\":\"API returns HTTP 200 and all required product attributes are present and populated for each businessId\",\"endpoint\":\"GET /product/productInformation\",\"source_reference\":\"Use Case 2 Product Information API.docx\"}]}",
-  "generation_mode": "OpenRouter LLM API (openrouter/free)",
+  "generation_mode": "Local source-grounded gap recovery (not LLM-generated)",
   "model": "openrouter/free",
+  "llm_raw_response": "We are given a use case for Product Information API. The existing PractiTest scenarios are empty, so we need to generate up to two new scenarios based on the source data.\n\nWe have:\n- Requirements from a docx file describing the test steps for Product Information API.\n- Specs from a JSON file listing endpoints for Product Catalog Management Service.\n- A Postman collection with two requests: Product Offering (GET) and Product Information (POST).\n\nThe requirement describes:\n1. Precondition: Invoke GET /productOffering?salesChannel=default&brand=test to get businessId values where productTypesClassification contains name=\"Mobile Device\".\n2. Then for each businessId, invoke Product Information API (which according to the spec is POST /product/productInformation? Wait, the spec shows POST /product/productInformation, but the requirement says GET /product/productInformation. Let's check: In the requirement: \"Product Information Endpoint: GET /product/productInformation\". However, in the spec, we have POST /product/productInformation. Also in the Postman collection, it's POST. There's a discrepancy. We must rely on the source data. The spec says POST, the Postman collection says POST. The requirement doc might have a typo. We should use the spec and collection as they are more technical. But the requirement is the test case description. We'll note the endpoint as POST /product/productInformation because that's what the spec and collection show.\n\nThe validation steps:\n- Iterate through each businessId.\n- Invoke Product Information API with businessId.\n- Validate HTTP 200.\n- Soft assertions for required attributes: products.name, products.guid, attributes under charges array, products.minOccurs.\n- If any missing, capture businessId and missing attributes.\n- Continue for remaining businessIds.\n- Failure criteria: 4xx/5xx -> fail test case. 200 but missing attributes -> report and mark validation as failed after completing all.\n\nExpected outcome: complete coverage.\n\nWe need to generate up to two scenarios (positive and negative) that are not covered by existing tests (none). We should cover distinct documented behaviors.\n\nPossible scenarios:\n1. Positive: Successful retrieval of product information for a valid businessId with all required attributes present.\n2. Negative: Product Information API returns 4xx/5xx for a businessId (maybe invalid businessId? But the requirement says we get businessIds from the product offering response, so they should be valid. However, we can test with an invalid businessId to see error handling, but the requirement doesn't specify that. The requirement only says if the API returns 4xx/5xx, mark as failed. That implies we should test error responses. But the requirement is about validating the API for the businessIds that have \"Mobile Device\". So maybe we don't have a scenario for invalid businessId. However, the spec shows the endpoint returns 200 only. But we can still test negative by providing an invalid businessId? The requirement doesn't specify that. We should stick to documented behaviors.\n\nAnother negative scenario: API returns 200 but missing required attributes.\n\nWe have two distinct behaviors: \n- Success with all attributes.\n- Success but missing attributes (soft assertion failure).\n- Error response (4xx/5xx).\n\nWe can create two scenarios: one positive (all attributes present) and one negative (missing attributes). Or one positive and one negative for error response. Since the requirement emphasizes both error response and missing attributes, we can cover both in two scenarios.\n\nBut we are limited to two scenarios. Let's create:\n1. Positive: Validate product information for a businessId with \"Mobile Device\" returns 200 and all required attributes populated.\n2. Negative: Validate product information for a businessId returns 200 but missing one or more required attributes (soft assertion failure).\n\nWe could also do a negative for",
+  "fallback_used": true,
+  "fallback_reason": "RuntimeError: Model 'openrouter/free' returned blank content on attempt 2/2; finish_reason=length; max_tokens=900; reasoning_tokens=900; completion_tokens=900; message_fields=content,reasoning,reasoning_details,refusal,role. The selected free model used its output budget without returning visible text. No fallback scenarios were created. Try again or select another available free model.",
+  "usage": {},
   "llm_usage": {
-    "prompt_tokens": 1376,
-    "completion_tokens": 161,
-    "total_tokens": 1537
-  }
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0
+  },
+  "duplicate_scenarios_removed": 0
 }
