@@ -1,74 +1,49 @@
 {
-  "summary": "Gap analysis identified two uncovered token lifecycle behaviors: revoked refresh token reuse prevention and access token introspection validity assertion.",
+  "summary": "Source-grounded candidates for API operations not found in existing PractiTest scenarios.",
   "scenarios": [
     {
-      "name": "Revoked Refresh Token Cannot Be Reused",
-      "type": "negative",
-      "priority": "High",
-      "objective": "Verify that a revoked refresh token is rejected when used to generate a new access token",
-      "preconditions": [
-        "Create a profile and capture profileId",
-        "Generate OTP and capture deviceId",
-        "Validate OTP and capture accessToken and refreshToken"
-      ],
-      "steps": [
-        "Attempt to use the revoked refresh token to call /token/refresh"
-      ],
-      "expected_result": "The /token/refresh endpoint returns a 400 response and does not issue a new access token",
-      "endpoint": "POST /token/refresh",
-      "source_reference": "Use Case1_Validate Token Access and Refresh Token Lifecycle.docx"
-    },
-    {
-      "name": "Introspected Access Token Returns Valid Status",
+      "name": "Verify uncovered API operation: Authenticate a customer and return their profiles",
       "type": "positive",
       "priority": "Medium",
-      "objective": "Verify that a valid access token returns an active/introspected status when passed to /token/introspect",
+      "objective": "Exercise the documented POST /authenticate operation and verify its response contract.",
       "preconditions": [
-        "Create a profile and capture profileId",
-        "Generate OTP and capture deviceId",
-        "Validate OTP and capture accessToken"
+        "A reachable authorized test environment is configured."
       ],
       "steps": [
-        "Call /token/introspect with the captured accessToken"
+        "Prepare a POST request to /authenticate using the documented request details.",
+        "Send the request and compare the status and response body with the API specification."
       ],
-      "expected_result": "The /token/introspect endpoint returns a 200 response confirming the access token is valid and active",
-      "endpoint": "POST /token/introspect",
-      "source_reference": "Use Case1_Validate Token Access and Refresh Token Lifecycle.docx"
+      "expected_result": "The response matches the status code and schema documented for this operation; confirm exact values against the source specification.",
+      "endpoint": "POST /authenticate",
+      "source_reference": "UseCase1_SpecPortal.json"
+    },
+    {
+      "name": "Verify uncovered API operation: Revoke a refresh token",
+      "type": "positive",
+      "priority": "Medium",
+      "objective": "Exercise the documented POST /token/revoke operation and verify its response contract.",
+      "preconditions": [
+        "A reachable authorized test environment is configured."
+      ],
+      "steps": [
+        "Prepare a POST request to /token/revoke using the documented request details.",
+        "Send the request and compare the status and response body with the API specification."
+      ],
+      "expected_result": "The response matches the status code and schema documented for this operation; confirm exact values against the source specification.",
+      "endpoint": "POST /token/revoke",
+      "source_reference": "UseCase1_SpecPortal.json"
     }
   ],
-  "new_scenario_count": 2,
-  "existing_scenario_count": 0,
-  "llm_raw_response": "{\"summary\":\"Gap analysis identified two uncovered token lifecycle behaviors: revoked refresh token reuse prevention and access token introspection validity assertion.\",\"scenarios\":[{\"name\":\"Revoked Refresh Token Cannot Be Reused\",\"type\":\"negative\",\"priority\":\"High\",\"objective\":\"Verify that a revoked refresh token is rejected when used to generate a new access token\",\"preconditions\":[\"Create a profile and capture profileId\",\"Generate OTP and capture deviceId\",\"Validate OTP and capture accessToken and refreshToken\",\"Revoke the refresh token using /token/revoke\"],\"steps\":[\"Attempt to use the revoked refresh token to call /token/refresh\"],\"expected_result\":\"The /token/refresh endpoint returns a 400 response and does not issue a new access token\",\"endpoint\":\"POST /token/refresh\",\"source_reference\":\"Use Case1_Validate Token Access and Refresh Token Lifecycle.docx\"},{\"name\":\"Introspected Access Token Returns Valid Status\",\"type\":\"positive\",\"priority\":\"Medium\",\"objective\":\"Verify that a valid access token returns an active/introspected status when passed to /token/introspect\",\"preconditions\":[\"Create a profile and capture profileId\",\"Generate OTP and capture deviceId\",\"Validate OTP and capture accessToken\"],\"steps\":[\"Call /token/introspect with the captured accessToken\"],\"expected_result\":\"The /token/introspect endpoint returns a 200 response confirming the access token is valid and active\",\"endpoint\":\"POST /token/introspect\",\"source_reference\":\"Use Case1_Validate Token Access and Refresh Token Lifecycle.docx\"}]}",
-  "generation_mode": "OpenRouter LLM API (openrouter/free)",
+  "generation_mode": "Local source-grounded gap recovery (not LLM-generated)",
   "model": "openrouter/free",
-  "fallback_used": false,
+  "llm_raw_response": "{\n  \"summary\": \"Validate token lifecycle: OTP validation, token introspection, refresh, and revocation.\",\n  \"scenarios\": [\n    {\n      \"name\": \"Validate OTP and obtain access/refresh tokens\",\n      \"type\": \"positive\",\n      \"priority\": \"high\",\n      \"objective\": \"Verify that a valid OTP returns both accessToken and refreshToken.\",\n      \"preconditions\": \"Profile created with role VIEW-ONLY or ADMIN; OTP generated for the profile.\",\n      \"steps\": [\n        \"POST /validateOTP with otp, deviceId, profileId, accountNumber\",\n        \"Capture response containing accessToken and refreshToken\"\n      ],\n      \"expected_result\": \"Response includes accessToken and refreshToken fields.\",\n      \"endpoint\":",
+  "fallback_used": true,
+  "fallback_reason": "LLMResponseParseError: The LLM response did not contain valid JSON. Inspect the raw response below.",
+  "usage": {},
   "llm_usage": {
-    "prompt_tokens": 1453,
-    "completion_tokens": 301,
-    "total_tokens": 1754
-  },
-  "usage": {
-    "prompt_tokens": 1453,
-    "completion_tokens": 301,
-    "total_tokens": 1754,
-    "cost": 0,
-    "is_byok": false,
-    "prompt_tokens_details": {
-      "cached_tokens": 0,
-      "cache_write_tokens": 0,
-      "audio_tokens": 0,
-      "video_tokens": 0
-    },
-    "cost_details": {
-      "upstream_inference_cost": 0,
-      "upstream_inference_prompt_cost": 0,
-      "upstream_inference_completions_cost": 0
-    },
-    "completion_tokens_details": {
-      "reasoning_tokens": 0,
-      "image_tokens": 0,
-      "audio_tokens": 0
-    }
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0
   },
   "duplicate_scenarios_removed": 0
 }
