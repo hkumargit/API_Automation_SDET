@@ -400,7 +400,165 @@
           "url": "https://product-catalog-management-service.apiproc-int.aws.dishcloud.io/product/productInformation",
           "description": "Generated from cURL: curl --location 'https://product-catalog-management-service.apiproc-test.aws.dishcloud.io/product/productInformation' \\\n--header 'X-Correlation-Id: 945a76ce-d5fa-4f86-a7a0-027e7808f46f' \\\n--header 'X-Message-Id: 1001' \\\n--header 'X-Client-Id: Magento' \\\n--header 'X-TimeStamp: 2024-01-17T16:31:58.869Z' \\\n--header 'X-ForwardedBy: Order-orchestration' \\\n--header 'Content-Type: application/json' \\\n--data '{\n    \"channel\": \"e-commerce\",\n    \"businessIds\": [\n        \"001941\"\n    ]\n}'"
         }
-      ]
+      ],
+      "raw_collection": {
+        "info": {
+          "_postman_id": "13d0fb95-831c-4554-b0ec-0de8feda0003",
+          "name": "Catalog Service",
+          "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+          "_exporter_id": "44729475"
+        },
+        "item": [
+          {
+            "name": "Product Offering",
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "let jsonData = pm.response.json();\r\nlet businessIds = [];\r\n\r\njsonData.forEach(function (data) {\r\n   \r\n    data.offer.forEach(function (offer) {\r\n   businessIds.push(offer.businessId);\r\n    })\r\n})\r\n\r\npm.collectionVariables.set(\"businessIds\", JSON.stringify(businessIds));\r\nconsole.log(businessIds);"
+                  ]
+                }
+              }
+            ],
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "X-Correlation-Id",
+                  "value": "{{$guid}}"
+                },
+                {
+                  "key": "X-Message-Id",
+                  "value": "1001"
+                },
+                {
+                  "key": "X-Client-Id",
+                  "value": "RW_WOLVERINE_CATALOG"
+                },
+                {
+                  "key": "X-TimeStamp",
+                  "value": "1749152520"
+                },
+                {
+                  "key": "X-ForwardedBy",
+                  "value": "Order-orchestration"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "{{bearer_token_0f0c}}"
+                }
+              ],
+              "url": {
+                "raw": "https://product-catalog-management-service.apiproc-int.aws.dishcloud.io/productOffering?salesChannel=default&brand=test",
+                "protocol": "https",
+                "host": [
+                  "product-catalog-management-service",
+                  "apiproc-int",
+                  "aws",
+                  "dishcloud",
+                  "io"
+                ],
+                "path": [
+                  "productOffering"
+                ],
+                "query": [
+                  {
+                    "key": "salesChannel",
+                    "value": "default"
+                  },
+                  {
+                    "key": "brand",
+                    "value": "test"
+                  }
+                ]
+              },
+              "description": "Generated from cURL: curl --location 'https://product-catalog-management-service.apiproc-test.aws.dishcloud.io/productOffering?salesChannel=default&brand=test' \\\n--header 'X-Correlation-Id: d94d00e3-5722-4bb2-a919-fc652fb3e96e' \\\n--header 'X-Message-Id: 1001' \\\n--header 'X-Client-Id: Magento' \\\n--header 'X-TimeStamp: 1749152520' \\\n--header 'X-ForwardedBy: Order-orchestration' \\\n--header 'Authorization: {{bearer_token_0f0c}}'"
+            },
+            "response": []
+          },
+          {
+            "name": "Product Information",
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  {
+                    "key": "token",
+                    "value": "{{access_token}}",
+                    "type": "string"
+                  }
+                ]
+              },
+              "method": "POST",
+              "header": [
+                {
+                  "key": "X-Correlation-Id",
+                  "value": "945a76ce-d5fa-4f86-a7a0-027e7808f46f"
+                },
+                {
+                  "key": "X-Message-Id",
+                  "value": "1001"
+                },
+                {
+                  "key": "X-Client-Id",
+                  "value": "RW_WOLVERINE_CATALOG"
+                },
+                {
+                  "key": "X-TimeStamp",
+                  "value": "2024-01-17T16:31:58.869Z"
+                },
+                {
+                  "key": "X-ForwardedBy",
+                  "value": "Order-orchestration"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "switchToCpps",
+                  "value": "cpps",
+                  "disabled": true
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"channel\": \"e-commerce\",\n    \"businessIds\": [\n        \"002232\"\n    ]\n}\n",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "https://product-catalog-management-service.apiproc-int.aws.dishcloud.io/product/productInformation",
+                "protocol": "https",
+                "host": [
+                  "product-catalog-management-service",
+                  "apiproc-int",
+                  "aws",
+                  "dishcloud",
+                  "io"
+                ],
+                "path": [
+                  "product",
+                  "productInformation"
+                ]
+              },
+              "description": "Generated from cURL: curl --location 'https://product-catalog-management-service.apiproc-test.aws.dishcloud.io/product/productInformation' \\\n--header 'X-Correlation-Id: 945a76ce-d5fa-4f86-a7a0-027e7808f46f' \\\n--header 'X-Message-Id: 1001' \\\n--header 'X-Client-Id: Magento' \\\n--header 'X-TimeStamp: 2024-01-17T16:31:58.869Z' \\\n--header 'X-ForwardedBy: Order-orchestration' \\\n--header 'Content-Type: application/json' \\\n--data '{\n    \"channel\": \"e-commerce\",\n    \"businessIds\": [\n        \"001941\"\n    ]\n}'"
+            },
+            "response": []
+          }
+        ],
+        "variable": [
+          {
+            "key": "businessIds",
+            "value": ""
+          }
+        ]
+      }
     }
   ],
   "other_documents": []
