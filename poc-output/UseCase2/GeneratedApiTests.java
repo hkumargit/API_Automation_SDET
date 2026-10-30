@@ -1,7 +1,13 @@
 // Minimal Java showcase generated from the LLM scenarios.
 
-// Scenario 1: Product Information API Validation
-// Invoke GET /productOffering?salesChannel=default&brand=test and extract businessId values where productTypesClassification name equals Mobile Device
-@Test void productInformationApiValidation() {
-    given().when().get("GET /product/productInformation").then().statusCode(200);
+// Scenario 1: Verify uncovered API operation: Health check endpoint
+// Prepare a GET request to / using the documented request details.
+@Test void verifyUncoveredApiOperationHealthCheckEndpoint() {
+    given().when().get("GET /").then(); // Add assertion from: The response matches the status code and schema documented for this operation; confirm exact values against the source specification.
+}
+
+// Scenario 2: Verify uncovered API operation: Retrieves Catalog Entities
+// Prepare a GET request to /productOffering using the documented request details.
+@Test void verifyUncoveredApiOperationRetrievesCatalogEntities() {
+    given().when().get("GET /productOffering").then(); // Add assertion from: The response matches the status code and schema documented for this operation; confirm exact values against the source specification.
 }
