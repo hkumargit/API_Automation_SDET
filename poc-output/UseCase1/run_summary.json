@@ -1,6 +1,6 @@
 {
   "use_case": "UseCase1",
-  "generated_at_utc": "2026-10-26T09:39:38.036260+00:00",
+  "generated_at_utc": "2026-10-30T10:39:35.933439+00:00",
   "input_files": [
     "Use Case1_Validate Token Access and Refresh Token Lifecycle.docx",
     "Use Case1_Validate Token Access and Refresh Token Lifecycle.postman_collection.json",
@@ -19,11 +19,11 @@
   "generation_mode": "OpenRouter LLM API (openrouter/free)",
   "model": "openrouter/free",
   "llm_usage": {
-    "prompt_tokens": 809,
-    "completion_tokens": 728,
-    "total_tokens": 1537
+    "prompt_tokens": 1453,
+    "completion_tokens": 301,
+    "total_tokens": 1754
   },
-  "llm_response_seconds": 13.64,
+  "llm_response_seconds": 13.75,
   "note": "Generated Java is a scaffold; review and complete endpoint/auth/payload/assertions before running.",
-  "total_workflow_seconds": 13.71
+  "total_workflow_seconds": 13.86
 }
