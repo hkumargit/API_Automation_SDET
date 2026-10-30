@@ -1,0 +1,5 @@
+{
+  "status": "NOT RUN",
+  "message": "Set API_BASE_URL in .env or enter a base URL in the UI.",
+  "tests": []
+}
