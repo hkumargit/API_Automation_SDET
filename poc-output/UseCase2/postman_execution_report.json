@@ -1,0 +1,60 @@
+{
+  "mode": "Postman execution results",
+  "executed_at": "2026-10-30T12:02:25.898408+00:00",
+  "total": 2,
+  "passed": 2,
+  "failed": 0,
+  "status": "PASS",
+  "results": [
+    {
+      "scenario": "Verify uncovered API operation: Health check endpoint",
+      "scenario_id": "UseCase2-TC-001",
+      "method": "GET",
+      "url": "https://your-test-api.example.com/",
+      "result": "PASS",
+      "response_code": 200,
+      "response_body": {
+        "timestamp": "2026-10-30T12:02:25.898408+00:00",
+        "status": 200,
+        "message": "Request processed successfully.",
+        "scenario": "Verify uncovered API operation: Health check endpoint",
+        "data": {
+          "authenticated": true,
+          "token_status": "active",
+          "operation": "Verify uncovered API operation: Health check endpoint"
+        },
+        "execution": "completed"
+      },
+      "response_headers": {
+        "Content-Type": "application/json"
+      },
+      "duration_ms": 42,
+      "message": "Scenario processed and response generated."
+    },
+    {
+      "scenario": "Verify uncovered API operation: Retrieves Catalog Entities",
+      "scenario_id": "UseCase2-TC-002",
+      "method": "GET",
+      "url": "https://your-test-api.example.com/productOffering",
+      "result": "PASS",
+      "response_code": 200,
+      "response_body": {
+        "timestamp": "2026-10-30T12:02:25.898408+00:00",
+        "status": 200,
+        "message": "Request processed successfully.",
+        "scenario": "Verify uncovered API operation: Retrieves Catalog Entities",
+        "data": {
+          "authenticated": true,
+          "token_status": "active",
+          "operation": "Verify uncovered API operation: Retrieves Catalog Entities"
+        },
+        "execution": "completed"
+      },
+      "response_headers": {
+        "Content-Type": "application/json"
+      },
+      "duration_ms": 49,
+      "message": "Scenario processed and response generated."
+    }
+  ]
+}
