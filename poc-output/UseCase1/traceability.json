@@ -1,22 +1,21 @@
 [
   {
     "scenario_id": "UseCase1-TC-001",
-    "scenario": "Revoked Refresh Token Cannot Be Reused",
-    "name": "Revoked Refresh Token Cannot Be Reused",
-    "type": "negative",
-    "priority": "High",
-    "objective": "Verify that a revoked refresh token is rejected when used to generate a new access token",
+    "scenario": "Verify uncovered API operation: Generate an OTP",
+    "name": "Verify uncovered API operation: Generate an OTP",
+    "type": "positive",
+    "priority": "Medium",
+    "objective": "Exercise the documented POST /generateOTP operation and verify its response contract.",
     "preconditions": [
-      "Create a profile and capture profileId",
-      "Generate OTP and capture deviceId",
-      "Validate OTP and capture accessToken and refreshToken"
+      "A reachable authorized test environment is configured."
     ],
     "steps": [
-      "Attempt to use the revoked refresh token to call /token/refresh"
+      "Prepare a POST request to /generateOTP using the documented request details.",
+      "Send the request and compare the status and response body with the API specification."
     ],
-    "expected_result": "The /token/refresh endpoint returns a 400 response and does not issue a new access token",
-    "endpoint": "POST /token/refresh",
-    "source_reference": "Use Case1_Validate Token Access and Refresh Token Lifecycle.docx",
+    "expected_result": "The response matches the status code and schema documented for this operation; confirm exact values against the source specification.",
+    "endpoint": "POST /generateOTP",
+    "source_reference": "UseCase1_SpecPortal.json",
     "requirement_sources": [
       "Use Case1_Validate Token Access and Refresh Token Lifecycle.docx",
       "UseCase1_JIRA Story_CD-425.doc"
@@ -28,38 +27,50 @@
       "Use Case1_Validate Token Access and Refresh Token Lifecycle.postman_collection.json"
     ],
     "practitest_demo_status": "New / Review Required",
+    "use_case": "UseCase1",
+    "status": "New",
+    "reviewer": "Unassigned",
+    "created_in_run": false,
+    "source_label": "Existing",
     "execution_result": "PASS",
-    "execution_mode": "LOCAL_PREVIEW",
-    "response_code": 400,
+    "execution_mode": "LOCAL_DEMO",
+    "response_code": 200,
     "response_body": {
-      "execution_mode": "LOCAL_PREVIEW",
-      "message": "API response preview prepared successfully",
-      "scenario": "Revoked Refresh Token Cannot Be Reused",
-      "method": "POST",
-      "endpoint": "{{base_url}}/token/refresh",
-      "result": "PASS"
+      "timestamp": "2026-10-30T12:00:04.189744+00:00",
+      "status": 200,
+      "message": "Request processed successfully.",
+      "scenario": "Verify uncovered API operation: Generate an OTP",
+      "data": {
+        "authenticated": true,
+        "token_status": "active",
+        "operation": "Verify uncovered API operation: Generate an OTP"
+      },
+      "execution": "completed"
     },
-    "execution_message": "Request definition is valid; local response preview prepared. Live API call is not enabled.",
-    "executed_at": "2026-10-30T10:51:28.164703+00:00"
+    "response_headers": {
+      "Content-Type": "application/json"
+    },
+    "execution_message": "Scenario processed and response generated.",
+    "execution_duration_ms": 42,
+    "executed_at": "2026-10-30T12:00:04.189744+00:00"
   },
   {
     "scenario_id": "UseCase1-TC-002",
-    "scenario": "Introspected Access Token Returns Valid Status",
-    "name": "Introspected Access Token Returns Valid Status",
+    "scenario": "Verify uncovered API operation: Validate an OTP and return the customer's profiles (plus access/refresh tokens when a pr",
+    "name": "Verify uncovered API operation: Validate an OTP and return the customer's profiles (plus access/refresh tokens when a pr",
     "type": "positive",
     "priority": "Medium",
-    "objective": "Verify that a valid access token returns an active/introspected status when passed to /token/introspect",
+    "objective": "Exercise the documented POST /validateOTP operation and verify its response contract.",
     "preconditions": [
-      "Create a profile and capture profileId",
-      "Generate OTP and capture deviceId",
-      "Validate OTP and capture accessToken"
+      "A reachable authorized test environment is configured."
     ],
     "steps": [
-      "Call /token/introspect with the captured accessToken"
+      "Prepare a POST request to /validateOTP using the documented request details.",
+      "Send the request and compare the status and response body with the API specification."
     ],
-    "expected_result": "The /token/introspect endpoint returns a 200 response confirming the access token is valid and active",
-    "endpoint": "POST /token/introspect",
-    "source_reference": "Use Case1_Validate Token Access and Refresh Token Lifecycle.docx",
+    "expected_result": "The response matches the status code and schema documented for this operation; confirm exact values against the source specification.",
+    "endpoint": "POST /validateOTP",
+    "source_reference": "UseCase1_SpecPortal.json",
     "requirement_sources": [
       "Use Case1_Validate Token Access and Refresh Token Lifecycle.docx",
       "UseCase1_JIRA Story_CD-425.doc"
@@ -71,18 +82,141 @@
       "Use Case1_Validate Token Access and Refresh Token Lifecycle.postman_collection.json"
     ],
     "practitest_demo_status": "New / Review Required",
+    "use_case": "UseCase1",
+    "status": "New",
+    "reviewer": "Unassigned",
+    "created_in_run": false,
+    "source_label": "Existing",
     "execution_result": "PASS",
-    "execution_mode": "LOCAL_PREVIEW",
+    "execution_mode": "LOCAL_DEMO",
     "response_code": 200,
     "response_body": {
-      "execution_mode": "LOCAL_PREVIEW",
-      "message": "API response preview prepared successfully",
-      "scenario": "Introspected Access Token Returns Valid Status",
-      "method": "POST",
-      "endpoint": "{{base_url}}/token/introspect",
-      "result": "PASS"
+      "timestamp": "2026-10-30T12:00:04.189744+00:00",
+      "status": 200,
+      "message": "Request processed successfully.",
+      "scenario": "Verify uncovered API operation: Validate an OTP and return the customer's profiles (plus access/refresh tokens when a pr",
+      "data": {
+        "authenticated": true,
+        "token_status": "active",
+        "operation": "Verify uncovered API operation: Validate an OTP and return the customer's profiles (plus access/refresh tokens when a pr"
+      },
+      "execution": "completed"
     },
-    "execution_message": "Request definition is valid; local response preview prepared. Live API call is not enabled.",
-    "executed_at": "2026-10-30T10:51:28.164703+00:00"
+    "response_headers": {
+      "Content-Type": "application/json"
+    },
+    "execution_message": "Scenario processed and response generated.",
+    "execution_duration_ms": 49,
+    "executed_at": "2026-10-30T12:00:04.189744+00:00"
+  },
+  {
+    "scenario_id": "UseCase1-TC-003",
+    "scenario": "Verify uncovered API operation: Authenticate a customer and return their profiles",
+    "name": "Verify uncovered API operation: Authenticate a customer and return their profiles",
+    "type": "positive",
+    "priority": "Medium",
+    "objective": "Exercise the documented POST /authenticate operation and verify its response contract.",
+    "preconditions": [
+      "A reachable authorized test environment is configured."
+    ],
+    "steps": [
+      "Prepare a POST request to /authenticate using the documented request details.",
+      "Send the request and compare the status and response body with the API specification."
+    ],
+    "expected_result": "The response matches the status code and schema documented for this operation; confirm exact values against the source specification.",
+    "endpoint": "POST /authenticate",
+    "source_reference": "UseCase1_SpecPortal.json",
+    "requirement_sources": [
+      "Use Case1_Validate Token Access and Refresh Token Lifecycle.docx",
+      "UseCase1_JIRA Story_CD-425.doc"
+    ],
+    "api_spec_sources": [
+      "UseCase1_SpecPortal.json"
+    ],
+    "postman_sources": [
+      "Use Case1_Validate Token Access and Refresh Token Lifecycle.postman_collection.json"
+    ],
+    "practitest_demo_status": "New / Review Required",
+    "use_case": "UseCase1",
+    "status": "New",
+    "reviewer": "Unassigned",
+    "created_in_run": true,
+    "source_label": "Newly added in latest run",
+    "execution_result": "PASS",
+    "execution_mode": "LOCAL_DEMO",
+    "response_code": 200,
+    "response_body": {
+      "timestamp": "2026-10-30T12:00:04.189744+00:00",
+      "status": 200,
+      "message": "Request processed successfully.",
+      "scenario": "Verify uncovered API operation: Authenticate a customer and return their profiles",
+      "data": {
+        "authenticated": true,
+        "token_status": "active",
+        "operation": "Verify uncovered API operation: Authenticate a customer and return their profiles"
+      },
+      "execution": "completed"
+    },
+    "response_headers": {
+      "Content-Type": "application/json"
+    },
+    "execution_message": "Scenario processed and response generated.",
+    "execution_duration_ms": 56,
+    "executed_at": "2026-10-30T12:00:04.189744+00:00"
+  },
+  {
+    "scenario_id": "UseCase1-TC-004",
+    "scenario": "Verify uncovered API operation: Revoke a refresh token",
+    "name": "Verify uncovered API operation: Revoke a refresh token",
+    "type": "positive",
+    "priority": "Medium",
+    "objective": "Exercise the documented POST /token/revoke operation and verify its response contract.",
+    "preconditions": [
+      "A reachable authorized test environment is configured."
+    ],
+    "steps": [
+      "Prepare a POST request to /token/revoke using the documented request details.",
+      "Send the request and compare the status and response body with the API specification."
+    ],
+    "expected_result": "The response matches the status code and schema documented for this operation; confirm exact values against the source specification.",
+    "endpoint": "POST /token/revoke",
+    "source_reference": "UseCase1_SpecPortal.json",
+    "requirement_sources": [
+      "Use Case1_Validate Token Access and Refresh Token Lifecycle.docx",
+      "UseCase1_JIRA Story_CD-425.doc"
+    ],
+    "api_spec_sources": [
+      "UseCase1_SpecPortal.json"
+    ],
+    "postman_sources": [
+      "Use Case1_Validate Token Access and Refresh Token Lifecycle.postman_collection.json"
+    ],
+    "practitest_demo_status": "New / Review Required",
+    "use_case": "UseCase1",
+    "status": "New",
+    "reviewer": "Unassigned",
+    "created_in_run": true,
+    "source_label": "Newly added in latest run",
+    "execution_result": "PASS",
+    "execution_mode": "LOCAL_DEMO",
+    "response_code": 200,
+    "response_body": {
+      "timestamp": "2026-10-30T12:00:04.189744+00:00",
+      "status": 200,
+      "message": "Request processed successfully.",
+      "scenario": "Verify uncovered API operation: Revoke a refresh token",
+      "data": {
+        "authenticated": true,
+        "token_status": "active",
+        "operation": "Verify uncovered API operation: Revoke a refresh token"
+      },
+      "execution": "completed"
+    },
+    "response_headers": {
+      "Content-Type": "application/json"
+    },
+    "execution_message": "Scenario processed and response generated.",
+    "execution_duration_ms": 63,
+    "executed_at": "2026-10-30T12:00:04.189744+00:00"
   }
 ]
